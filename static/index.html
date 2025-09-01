@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Music Recommender</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+</head>
+<body>
+    <dotlottie-wc src="https://lottie.host/ea334550-93fb-4ed3-8d69-769063c36c63/rzAW9bYokm.lottie" speed="1" autoplay loop></dotlottie-wc>
+    <div class="container">
+        <h1>🎵 Smart Music Recommender</h1>
+        <p>Discover new music based on your favorites</p>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for a song...">
+            <button id="searchBtn">Search</button>
+        </div>
+        <div class="examples">
+            <p>Try searching for:</p>
+            <div class="example-tags">
+                <span class="tag" onclick="setSearch('Piano Concerto')">Piano Concerto</span>
+                <span class="tag" onclick="setSearch('Danny Boy')">Danny Boy</span>
+                <span class="tag" onclick="setSearch('Clancy')">Clancy</span>
+                <span class="tag" onclick="setSearch('Gati Bali')">Gati Bali</span>
+                <span class="tag" onclick="setSearch('La Mañanita')">La Mañanita</span>
+            </div>
+        </div>
+        <div id="results"></div>
+        <div id="recommendations"></div>
+        <audio id="audioPlayer" controls style="display: none;"></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
