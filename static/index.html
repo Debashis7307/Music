@@ -6,12 +6,13 @@
     <title>Smart Music Recommender</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <dotlottie-wc src="https://lottie.host/ea334550-93fb-4ed3-8d69-769063c36c63/rzAW9bYokm.lottie" speed="1" autoplay loop></dotlottie-wc>
     <div class="container">
         <h1>🎵 Smart Music Recommender</h1>
-        <p>Discover new music based on your favorites</p>
+        <p>Discover new music based on your favorites with AI explanations</p>
         <div class="search-container">
             <input type="text" id="search" placeholder="Search for a song...">
             <button id="searchBtn">Search</button>
@@ -28,8 +29,76 @@
         </div>
         <div id="results"></div>
         <div id="recommendations"></div>
+        
+        <!-- XAI Explanation Modal -->
+        <div id="xaiModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🤖 Why This Song Was Recommended</h2>
+                    <span class="close" onclick="closeXAIModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="xaiContent"></div>
+                </div>
+            </div>
+        </div>
+        
         <audio id="audioPlayer" controls style="display: none;"></audio>
     </div>
+    
+    <!-- XAI Explanation Template -->
+    <template id="xaiTemplate">
+        <div class="xai-explanation">
+            <div class="similarity-score">
+                <h3>Overall Similarity</h3>
+                <div class="score-circle">
+                    <span class="score-text"></span>
+                </div>
+            </div>
+            
+            <div class="feature-analysis">
+                <h3>Feature Analysis</h3>
+                <div class="feature-chart-container">
+                    <canvas id="featureChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="top-features">
+                <h3>Top Matching Features</h3>
+                <div class="features-list"></div>
+            </div>
+            
+            <div class="reasoning">
+                <h3>AI Reasoning</h3>
+                <div class="reasoning-text"></div>
+            </div>
+            
+            <div class="detailed-comparison">
+                <h3>Detailed Feature Comparison</h3>
+                <div class="comparison-table"></div>
+            </div>
+
+            <div class="lime-explanation" style="display: none;">
+                <h3>LIME Explanation</h3>
+                <div class="lime-score">
+                    <span>Explanation Score: <span class="lime-score-value"></span></span>
+                </div>
+                <div class="lime-features-list"></div>
+                <div class="lime-chart-container">
+                    <canvas id="limeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="shap-explanation" style="display: none;">
+                <h3>SHAP Explanation</h3>
+                <div class="shap-features-list"></div>
+                <div class="shap-chart-container">
+                    <canvas id="shapChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </template>
+    
     <script src="script.js"></script>
 </body>
 </html>
